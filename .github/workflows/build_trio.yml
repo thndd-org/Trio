@@ -318,6 +318,11 @@ jobs:
       - name: Sync clock
         run: sudo sntp -sS time.windows.com
 
+      - name: Install iOS 18.4 Simulator Runtime
+        run: |
+          sudo xcode-select -s /Applications/Xcode_XX.X.app # Use the correct Xcode version
+          xcrun simctl runtime install "iOS 18.4"
+          
       # Build signed Trio IPA file
       - name: Fastlane Build & Archive
         run: bundle exec fastlane build_trio
